@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class GO3 {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String inputString = input.nextLine().replaceAll("[^\\d]+", "-");
+
+		String[] stringArray = inputString.split("-");
+		ArrayList<Integer> noNullEntryStrings = new ArrayList<>();
+
+		for (String string : stringArray) {
+			if (string.length() != 0) {
+				noNullEntryStrings.add(Integer.parseInt(string));
+			}
+		}
+
+		int[] areas = new int[noNullEntryStrings.size() / 2];
+
+		for (int i = 0; i < areas.length; i++) {
+			areas[i] = 1;
+			for (int j = 2 * i; j < 2*i + 2; j++) {
+				areas[i] *= noNullEntryStrings.get(j);
+			}
+		}
+
+		int max = Integer.MIN_VALUE;
+
+		for (int i = 0; i < areas.length - 2; i++) {
+			int current = areas[i] + areas[i+1] + areas[i+2];
+			if (current > max) {
+				max = current;
+			}
+		}
+		System.out.println(max);
+
+
+	}
+
+}

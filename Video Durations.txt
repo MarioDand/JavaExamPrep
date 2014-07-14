@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class GO1 {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String stringInput = "";
+		long sumMiniutes = 0;
+		long sumHours = 0;
+		while (true) {
+			stringInput = input.nextLine();
+			if (stringInput.equals("End")) {
+				break;
+			}
+			String[] splitterStrings = stringInput.split(":");
+			int hours = Integer.parseInt(splitterStrings[0]);
+			int minitues = Integer.parseInt(splitterStrings[1]);
+			sumHours += hours;
+			sumMiniutes += minitues;
+		}
+		long minutesToHours = sumMiniutes / 60;
+		long minutesOutput = sumMiniutes % 60;
+		sumHours += minutesToHours;
+		if (minutesOutput < 10) {
+			System.out.println(sumHours + ":0" + sumMiniutes % 60);			
+		} else {
+			System.out.println(sumHours + ":" + sumMiniutes % 60);			
+		}
+
+
+
+
+	}
+}

@@ -1,0 +1,44 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+
+public class GO4 {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String stringInput = input.nextLine();
+		String[] stringArray = stringInput.split(" ");
+		int[] intArray = new int[stringArray.length];
+
+		for (int i = 0; i < intArray.length; i++) {
+			intArray[i] = Integer.parseInt(stringArray[i]);
+		}
+
+		String[] allStrings = new String[stringArray.length-1];
+
+		for (int i = 0; i < allStrings.length; i++) {
+			allStrings[i]= 
+					Integer.toString(intArray[i]) + " " +
+					Integer.toString(intArray[i + 1]);
+		}
+
+		Map<String, Integer> stringsCout = new LinkedHashMap<>();
+		double arrayLenght = allStrings.length;
+
+		for (String card : allStrings) {
+			Integer count = stringsCout.get(card);
+			if (count == null) {
+				count = 0;
+			}
+			stringsCout.put(card, count+1);
+		}
+
+		for (String card : stringsCout.keySet()) {
+			double percentage = (stringsCout.get(card) / arrayLenght) * 100;
+			System.out.printf("%s -> %.2f%%\n", card, percentage);
+		}
+
+	}
+
+}
